@@ -4,7 +4,7 @@ from classes import *
 import time
 
 def main():
-    print('KARAKTERLER HAZIRLANIYOR')
+    print('LOADING...')
 
     chars = {}
 
@@ -36,7 +36,7 @@ def main():
 
     countDown()
 
-    while firstP.hp > 0 or secondP.hp > 0:
+    while firstP.hp > 0 and secondP.hp > 0:
 
         attacker = Attacker.__next__()[1]
 
@@ -52,51 +52,45 @@ def main():
 
         print('\n')
 
-        print("AVALIABLE MOVES : \namguard --1 \nquadroDick --2 \nsedativeDick --3 \ngeciktirici --4")
+        print("AVALIABLE MOVES : \namguard --1 \nquadroDick --2 \nkucultucu --3 \ngeciktirici --4")
         
         print('\n')
 
         move = input("Select by typing your moves number ->  ")
         
         if move == "1":
-            Moves.amguard(attacker)
+            if attacker.assholeArmor > 100:
+                print("NIGGA YOU CANT WEAR 2 AMGUARDS AT THE SAME TIME")
+            else:
+                Moves.amguard(attacker)
 
         if move == '2':
             Moves.quadroDick(attacker)
             attacker.attack(defencer, attacker.dickSize)
+            attacker.dickSize = attacker.defaultDickSize
             
 
         if move == '3':
-            Moves.sedativeDick(defencer)
+            Moves.kucultucu(defencer)
 
         if move == '4':
             Moves.geciktirici(attacker)
             attacker.attack(defencer, attacker.dickSize)
+            time.sleep(1)
+            attacker.attack(defencer, attacker.dickSize)
+            attacker.dickSize = attacker.defaultDickSize
 
-        time.sleep(1)
 
         
         time.sleep(2)
+    
+    if firstP.hp <= 0:
+        print("WINNER IS {0}".format(secondPname))
+    elif secondP.hp <= 0:
+        print("WINNER IS {0}".format(firstPname))
 
-def healthStatus(firstP, secondP):
-    firstP_healthBar, firstP_percent = do_health(firstP.hp, firstP.defaultHP)
-    secondP_healthBar, secondP_percent = do_health(secondP.hp, secondP.defaultHP)
-    print("########################################## HEALTH STATUS ##########################################\n#                          {0}'s health is {1} - {2} {3}\n#                          {4}'s health is {5} - {6} {7}\n###################################################################################################".format(firstP.title, firstP.hp, firstP_healthBar, firstP_percent, secondP.title, secondP.hp, secondP_healthBar, secondP_percent))
 
-def turnDef(Char):
-    print("------------------{0}'s TURN------------------".format(Char.title))
-    return Char
 
-def setTurnOrder(Char1, Char2):
-    Attacker = []
-    Defencer = []
-    for _ in range(100):
-        Attacker.append(Char1)
-        Attacker.append(Char2)
-    for _ in range(100):
-        Defencer.append(Char2)
-        Defencer.append(Char1)
-    return Attacker, Defencer
 
 if __name__ == "__main__":
     main()

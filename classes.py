@@ -4,7 +4,6 @@ import time
 class Char:
 
     title = ''
-    damage = ''
     details = ''
     is216 = False
     hp = 420
@@ -14,13 +13,15 @@ class Char:
 
     hasBlock = False
 
+    defaultAssholeArmor = 69
     defaultDickSize = 7
     defaultHP = 420
     
 
-    def __init__(self,title, damage, details):
+    def __init__(self,title, dickSize, details):
         self.title = title
-        self.damage = damage
+        self.dickSize = dickSize
+        self.defaultDickSize = dickSize
         self.details = details
 
     
@@ -28,7 +29,7 @@ class Char:
         if Char.hasBlock:
             print("NAH MAN YOUR ATTACK JUST GET BLOCKED")
         else:
-            if Char.assholeArmor != 0:
+            if Char.assholeArmor > 0:
                 if damage > Char.assholeArmor:
                     print("PRO GAMER ATTACKK !! {0}'s ASSHOLE ARMOR JUST BROKE !! PREPARE FOR RAPE".format(Char.title))
                     Char.hp -= damage-Char.assholeArmor
@@ -43,24 +44,24 @@ class Char:
 class Moves:
 
     def amguard(Char):
-        Char.assholeArmor += 20
-        print('{0} HAS GAINED 20 ASSHOLE ARMOR'.format(Char.title))
+        Char.assholeArmor += 80
+        print('{0} HAS GAINED 80 ASSHOLE ARMOR'.format(Char.title))
         time.sleep(2)
 
 
     def quadroDick(Char):
-        Char.dickSize += Char.dickSize*4
-        print("{0}'s dick size increased by {1} cm NOW HAS x4 DAMAGE".format(Char.title, Char.dickSize*4))
+        print("{0}'s dick size increased to {1} cm NOW HAS x4 DAMAGE".format(Char.title, Char.dickSize*4))
+        Char.dickSize = Char.dickSize*4
         time.sleep(2)
 
-    def sedativeDick(Char):
+    def kucultucu(Char):
         Char.dickSize = 2
         print("{0}'s dick size decrased to 2 cm DAMN NIGGA MICROPENIS".format(Char.title))
         time.sleep(2)
 
     def geciktirici(Char):
         Char.dickSize += 2
-        print("{0} used geciktirici, his attack powered and hits twice")
+        print("{0} used geciktirici, his attack powered and hits twice".format(Char.title))
         time.sleep(2)
 
 
@@ -68,8 +69,8 @@ class Moves:
 
 def currentCharList():
     CharList = {
-        'buyukbabaMax' : ['Buyukbaba MAX', 23, 'BUYUKBABA MAX' ],
-        'emanetoglu' : ['EMANETOGLU', 27, "GIRESUNLU ASIRET VARISI"]
+        'buyukbabaMax' : ['Buyukbaba MAX', 14, 'BUYUKBABA MAX' ],
+        'emanetoglu' : ['EMANETOGLU', 12, "GIRESUNLU ASIRET VARISI"]
     }
 
     return CharList
@@ -108,3 +109,39 @@ def do_health(health, maxHealth):
     bar = "|{0}{1}|".format(healthDisplay, remainingDisplay)               # Print out textbased healthbar
 
     return bar, percent
+
+def do_armor(armor, maxArmor):
+    armorDashes=20
+    dashConvert = int(maxArmor/armorDashes)                         
+    currentDashes = int(armor/dashConvert)                          
+    remainingArmor = armorDashes - currentDashes                    
+
+    armorDisplay = ''.join(['-' for i in range(currentDashes)])     
+    remainingDisplay = ''.join([' ' for i in range(remainingArmor)]) 
+    percent = str(int((armor/maxArmor)*100)) + "%"                  
+    
+    bar = "|{0}{1}|".format(armorDisplay, remainingDisplay)
+
+    return bar, percent
+
+def healthStatus(firstP, secondP):
+    firstP_healthBar, firstP_percent = do_health(firstP.hp, firstP.defaultHP)
+    secondP_healthBar, secondP_percent = do_health(secondP.hp, secondP.defaultHP)
+    firstP_armorBar, firstP_armorPercent = do_armor(firstP.assholeArmor, firstP.defaultAssholeArmor)
+    secondP_armorBar, secondP_armorPercent = do_armor(secondP.assholeArmor, secondP.defaultAssholeArmor)
+    print("#################################################### HEALTH AND ARMOR STATUS ####################################################\n#         {0}'s health is {1} - {2} {3} / Armor  is {4} - {5} {6}\n#         {7}'s health is {8} - {9} {10} / Armor is {11} - {12} {13}\n#################################################################################################################################".format(firstP.title, firstP.hp, firstP_healthBar, firstP_percent, firstP.assholeArmor, firstP_armorBar, firstP_armorPercent, secondP.title, secondP.hp, secondP_healthBar, secondP_percent, secondP.assholeArmor, secondP_armorBar, secondP_armorPercent))
+
+def turnDef(Char):
+    print("------------------{0}'s TURN------------------".format(Char.title))
+    return Char
+
+def setTurnOrder(Char1, Char2):
+    Attacker = []
+    Defencer = []
+    for _ in range(100):
+        Attacker.append(Char1)
+        Attacker.append(Char2)
+    for _ in range(100):
+        Defencer.append(Char2)
+        Defencer.append(Char1)
+    return Attacker, Defencer
