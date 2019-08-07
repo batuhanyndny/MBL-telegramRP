@@ -8,9 +8,9 @@ def main():
 
     chars = {}
 
-    for char in os.listdir('chars/'):
-        charImg = cv2.imread(char)
-        charName = char.split('.')[0]
+    charNames = ['buyukbabaMax','emanetoglu']
+
+    for charName in charNames:
         currList = currentCharList()
         details = currList[charName]
         charObj = Char(details[0],details[1], details[2])
@@ -25,8 +25,10 @@ def main():
     time.sleep(2)
 
     print('{0} plays as {1}'.format(firstPname, firstP.title))
+    #burda buyukbabaMax fotosu atilicak
     time.sleep(1)
     print('{0} plays as {1}'.format(secondPname, secondP.title))
+    #burda emanteroglu fotosu atilicak
     time.sleep(1)
 
     attacker, defencer = setTurnOrder(firstP, secondP)
