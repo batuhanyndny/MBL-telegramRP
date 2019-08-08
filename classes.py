@@ -104,6 +104,8 @@ class Moves:
         elif move == 'ReverseCard':
             newMoveIndex = moveIndex - 1
             Moves.ReverseCard(attacker, defencer, moveList, newMoveIndex)
+        elif move == 'invalidMove':
+            print('Man last move was invalid you wasted your reverseCard')
 
 
 

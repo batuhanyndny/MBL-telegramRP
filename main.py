@@ -93,6 +93,7 @@ def main():
 
         else:
             print("YOU DIDN'T ENTERED A VALID MOVE. YOU FOOL, WASTED YOUR TURN")
+            moveList.append('invalidMove')
 
         
         time.sleep(2)
