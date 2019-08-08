@@ -1,5 +1,4 @@
 import os
-import cv2
 from classes import *
 import time
 
@@ -21,6 +20,8 @@ def main():
 
     firstPname = input('FIRST PLAYER -> Enter your playername: ')
     secondPname = input('SECOND PLAYER -> Enter your playername: ')
+
+    moveList = []
 
     time.sleep(2)
 
@@ -54,7 +55,7 @@ def main():
 
         print('\n')
 
-        print("AVALIABLE MOVES : \namguard --1 \nquadroDick --2 \nkucultucu --3 \ngeciktirici --4")
+        print("AVALIABLE MOVES : \namguard --1 \nquadroDick --2 \nkucultucu --3 \ngeciktirici --4\nReverseCard --5")
         
         print('\n')
 
@@ -62,30 +63,44 @@ def main():
         
         if move == "1":
             if attacker.assholeArmor > 100:
-                print("NIGGA YOU CANT WEAR 2 AMGUARDS AT THE SAME TIME")
+                print("NIGGA YOU CANT WEAR 2 AMGUARDS AT THE SAME TIME, DAMN")
+                moveList.append(Moves.invalidMove())
             else:
                 Moves.amguard(attacker)
+                moveList.append('amguard')
 
-        if move == '2':
+        elif move == '2':
             Moves.quadroDick(attacker)
             attacker.attack(defencer, attacker.dickSize)
             attacker.dickSize = attacker.defaultDickSize
-            
+            moveList.append('quadroDick')
 
-        if move == '3':
+        elif move == '3':
             Moves.kucultucu(defencer)
+            moveList.append('kucultucu')
 
-        if move == '4':
+        elif move == '4':
             Moves.geciktirici(attacker)
             attacker.attack(defencer, attacker.dickSize)
             time.sleep(1)
             attacker.attack(defencer, attacker.dickSize)
             attacker.dickSize = attacker.defaultDickSize
+            moveList.append('geciktirici')
 
+        elif move == '5':
+            Moves.ReverseCard(attacker, defencer, moveList, -1)
+            moveList.append('ReverseCard')
+
+        else:
+            print("YOU DIDN'T ENTERED A VALID MOVE. YOU FOOL, WASTED YOUR TURN")
 
         
         time.sleep(2)
     
+    print("\n"*3)
+    print('KO')
+    print("\n"*3)
+
     if firstP.hp <= 0:
         print("WINNER IS {0}".format(secondPname))
     elif secondP.hp <= 0:

@@ -43,6 +43,9 @@ class Char:
 
 class Moves:
 
+    def invalidMove():
+        return 
+
     def amguard(Char):
         Char.assholeArmor += 80
         print('{0} HAS GAINED 80 ASSHOLE ARMOR'.format(Char.title))
@@ -63,6 +66,39 @@ class Moves:
         Char.dickSize += 2
         print("{0} used geciktirici, his attack powered and hits twice".format(Char.title))
         time.sleep(2)
+    
+    def ReverseCard(attacker, defencer, moveList, moveIndex):
+        move = moveList[moveIndex]
+        if move == 'amguard':
+            print("REVERSE CARD!\n{0}'s amguard taken back lol".format(defencer.title))
+            defencer.assholeArmor -= 80
+            Moves.amguard(attacker)
+        elif move == 'quadroDick':
+            print("REVERSE CARD!\nGOTCHAA, {0}'s DICK DID NOTHINGG".format(defencer.title))
+            Moves.quadroDick(attacker)
+            attacker.attack(defencer, attacker.dickSize)
+            attacker.dickSize = attacker.defaultDickSize
+            if attacker.assholeArmor > 0:
+                attacker.assholeArmor += defencer.dickSize*4
+            else:
+                attacker.hp += defencer.dickSize*4
+        elif move == 'kucultucu':
+            Moves.kucultucu(defencer)
+            print("REVERSE CARD!\nNIGGA {0} PUT THE KUCULTUCU TO {1}'s DICK".format(attacker.title, defencer.title))
+        elif move == 'geciktirici':
+            print("REVERSE CARD!\nNOPE {0} USED BETTER GECIKTIRICI".format(attacker.title))
+            Moves.geciktirici(attacker)
+            attacker.attack(defencer, attacker.dickSize)
+            time.sleep(1)
+            attacker.attack(defencer, attacker.dickSize)
+            attacker.dickSize = attacker.defaultDickSize
+            if attacker.assholeArmor > 0:
+                attacker.assholeArmor += defencer.dickSize+defencer.dickSize
+            else:
+                attacker.hp += defencer.dickSize+defencer.dickSize
+        elif move == 'ReverseCard':
+            newMoveIndex = moveIndex - 1
+            Moves.ReverseCard(attacker, defencer, moveList, newMoveIndex)
 
 
 
