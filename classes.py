@@ -81,7 +81,12 @@ class Moves:
             if attacker.assholeArmor > 0:
                 attacker.assholeArmor += defencer.dickSize*4
             else:
-                attacker.hp += defencer.dickSize*4
+                if (attacker.hp + defencer.dickSize*4) > attacker.defaultHP:
+                    extraArmor = defencer.dickSize*4 - (attacker.defaultHP - attacker.hp)
+                    attacker.hp = attacker.defaultHP
+                    attacker.assholeArmor += extraArmor
+                else:
+                    attacker.hp += defencer.dickSize*4
         elif move == 'kucultucu':
             Moves.kucultucu(defencer)
             print("REVERSE CARD!\nNIGGA {0} PUT THE KUCULTUCU TO {1}'s DICK".format(attacker.title, defencer.title))
