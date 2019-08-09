@@ -113,15 +113,15 @@ def main():
             Moves.assholeVacuum(attacker, defencer)
             moveList.append('assholeVacuum')
 
-        elif move == 'tencere': #-
+        elif move == 'tencere': 
             Moves.tencere(attacker)
             moveList.append('tencere')
         
-        elif move == 'ancientStand': #-
+        elif move == 'ancientStand': 
             Moves.ancientStand(attacker)
             moveList.append('ancientStand')
 
-        elif move == 'Linc': #-
+        elif move == 'Linc': 
             Moves.Linc(attacker, defencer)
             moveList.append("Linc")
 
