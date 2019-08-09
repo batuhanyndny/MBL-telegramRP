@@ -114,7 +114,7 @@ class Moves:
         attacker.hasBlock = True
 
     def Linc(attacker, defencer): # outstanding
-        print("{0} SHOUTS AND GATHERS A GROUP OF COMARS THAT LINCS {1}. {3} GAINED 25 ASSHOLE ARMOR AND DEALS DAMAGE TO {4} BY 30".format(attacker.title, defencer.title, attacker.title, defencer.title))
+        print("{0} SHOUTS AND GATHERS A GROUP OF COMARS THAT LINCS {1}. {2} GAINED 25 ASSHOLE ARMOR AND DEALS DAMAGE TO {3} BY 30".format(attacker.title, defencer.title, attacker.title, defencer.title))
         attacker.attack(defencer, 30)
         attacker.assholeArmor += 25
 
