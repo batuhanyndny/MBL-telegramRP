@@ -23,8 +23,6 @@ def main():
 
     moveList = []
 
-    defMoves = currentMoveList()
-
     roundCounter = 1
 
     time.sleep(2)
@@ -63,18 +61,20 @@ def main():
 
         print('\n')
         
-        movesDict = setAvaliableMoves(roundNumber, defMoves['regular'], defMoves['legendary'])
+        #list(dict(list(moves.values())[0]).keys())
+
+        movesDict = setAvaliableMoves(roundNumber, currentMoveList())
 
         moveNames, moveValues = list(movesDict.values()) , list(movesDict.keys())
 
-        print("AVALIABLE MOVES : \n{0} --{1} \n{2} --{3} \n{4} --{5} \n{6} --{7}".format(moveNames[0], moveValues[0], moveNames[1], moveValues[1], moveNames[2], moveValues[2], moveNames[3], moveValues[3]))
+        print("AVALIABLE MOVES : \n{0} --{1}  Details : {2}\n{3} --{4} Details : {5}\n{6} --{7} Details : {8}\n{9} --{10} Details : {11}".format(moveNames[0][0], moveValues[0], moveNames[0][1], moveNames[1][0], moveValues[1], moveNames[1][1], moveNames[2][0], moveValues[2], moveNames[2][1], moveNames[3][0], moveValues[3], moveNames[3][1]))
         
         print('\n')
 
         moveValue = input("Select by typing your moves number ->  ")
 
         try:
-            move = movesDict[int(moveValue)]
+            move = movesDict[int(moveValue)][0]
         except:
             print("YOU DIDN'T ENTERED A VALID MOVE. YOU FOOL, WASTED YOUR TURN")
             move = 'invalid'
@@ -112,7 +112,18 @@ def main():
         elif move == 'assholeVacuum':
             Moves.assholeVacuum(attacker, defencer)
             moveList.append('assholeVacuum')
-            
+
+        elif move == 'tencere': #-
+            Moves.tencere(attacker)
+            moveList.append('tencere')
+        
+        elif move == 'ancientStand': #-
+            Moves.ancientStand(attacker)
+            moveList.append('ancientStand')
+
+        elif move == 'Linc': #-
+            Moves.Linc(attacker, defencer)
+            moveList.append("Linc")
 
         
         time.sleep(1)

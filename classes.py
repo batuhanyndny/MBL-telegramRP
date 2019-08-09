@@ -1,7 +1,7 @@
 '''
 TODO
 -Moves
-    
+    GOTTO FIX setAvaliableMoves
 
 -CHARS
 
@@ -38,6 +38,7 @@ class Char:
     def attack(self,Char, damage):
         if Char.hasBlock:
             print("NAH MAN YOUR ATTACK JUST GET BLOCKED")
+            Char.hasBlock = False
         else:
             if Char.assholeArmor > 0:
                 if damage > Char.assholeArmor:
@@ -102,8 +103,21 @@ class Moves:
         attacker.dickSize += 48
         attacker.attack(defencer, attacker.dickSize)
         resetDS(attacker)
-        
-    
+
+    def tencere(attacker): #outstanding
+        print("{0} PUT THE TENCERE TO HIS ASS. NOW HAS 20 ASSHOLE ARMOR".format(attacker.title))
+        attacker.assholeArmor += 20
+        time.sleep(2)
+
+    def ancientStand(attacker): #outstanding
+        print("NOW {0} PERFORMING IN THE ANCINET VIRGIN STAND. HE WILL BLOCK THE NEXT MOVE !")
+        attacker.hasBlock = True
+
+    def Linc(attacker, defencer): # outstanding
+        print("{0} SHOUTS AND GATHERS A GROUP OF COMARS THAT LINCS {1}. {3} GAINED 25 ASSHOLE ARMOR AND DEALS DAMAGE TO {4} BY 30".format(attacker.title, defencer.title, attacker.title, defencer.title))
+        attacker.attack(defencer, 30)
+        attacker.assholeArmor += 25
+
     def ReverseCard(attacker, defencer, moveList, moveIndex): #legendary
         move = moveList[moveIndex]
         if move == 'amguard':
@@ -138,6 +152,19 @@ class Moves:
             print('REVERSE CARD !! THATS HOW YOU VACCUM BITCHH')
             Moves.assholeVacuum(attacker, defencer)
             armorHpRegulizer(attacker, defencer.dickSize+48)
+        elif move == 'tencere':
+            print('REVERSE CARD !! {0} STOLE THE TENCERE'.format(attacker.title))
+            Moves.tencere(attacker)
+            defencer.assholeArmor -= 20
+        elif move == 'ancientStand':
+            print("REVERSE CARD !! {0} STOLE THE VIRGIN STAND FROM {1}".format(attacker.title, defencer.title))
+            Moves.ancientStand(attacker)
+            defencer.hasBlock = False
+        elif move == 'Linc':
+            print("REVERSE CARD !! {0} SAID TO COMARS THAT {1} IS FEDOCU. NOW {2} IS GETTIN BULLIED".format(attacker.title, defencer.title, defencer.title))
+            Moves.Linc(attacker, defencer)
+            armorHpRegulizer(attacker, 30)
+            defencer.assholeArmor -= 25
 
 
 def armorHpRegulizer(attacker, damage):
@@ -164,28 +191,44 @@ def currentCharList():
 
 def currentMoveList():
     MoveList = {
-        'regular' : ['geciktirici', 'dickSlap', 'spankDaddy'],
-        'legendary' : ['amguard', 'quadroDick', 'kucultucu', 'assholeVacuum', 'ReverseCard']
+        'regular' : {   'geciktirici':'USES GECIKTIRICI TO LAST LONGER. HITS TWICE', 
+                        'dickSlap':'SLAP THE ENEMYS ASS WITH YOUR DICK. HITS ONCE', 
+                        'spankDaddy':'SPANK THE ENEMY IN THE BUTT. HITS ONCE'},
+
+        'outstanding' : {'tencere':'WRAP TENCERE AROUND YO ASS. GAIN 20 ASSHOLE ARMOR', 
+                        'ancientStand':'PERFORM THE ANCIENT VIRGIN STAND. BLOCKS ENEMY ONCE', 
+                        'Linc':'GATHER A GROUP OF COMARS AND BULLY THE ENEMY. GAIN 25 ASSHOLE ARMOR AND DEAL 30 DAMAGE'},
+
+        'legendary' : {'amguard':'PUT AMGUARD TO YOUR ASS. GAIN 80 ASSHOLE ARMOR', 
+                        'quadroDick':'YOUR DICK IS 4X LONGER. HIT ENEMY HARD', 
+                        'kucultucu': 'MAKE YOUR ENEMYS DICK SIZE 2. BEHOLD MICROPENIS', 
+                        'assholeVacuum': 'WHAT A MAGIC WITH MOUTH. DEAL +48 DAMAGE', 
+                        'ReverseCard': 'PARKOURR'}
 
     }
     return MoveList
 
-def setAvaliableMoves(roundNumber, regularMoves, legendaryMoves):
+def setAvaliableMoves(roundNumber, currentMoveList):
     avaliableMoves = {}
+    regMoves = currentMoveList['regular']
+    outsMoves = currentMoveList['outstanding']
+    legMoves = currentMoveList['legendary']
     if roundNumber < 4:
         indx1, indx2, indx3 = random.sample(range(0,3),3)
-        indx4 = random.randint(0,4)
-        avaliableMoves.update({1:regularMoves[indx1]})
-        avaliableMoves.update({2:regularMoves[indx2]})
-        avaliableMoves.update({3:regularMoves[indx3]})
-        avaliableMoves.update({4:legendaryMoves[indx4]})
+        indx4 = random.sample(range(0,3),1)[0]
+
+        avaliableMoves.update({1:[ list(regMoves.keys())[indx1], regMoves[list(regMoves.keys())[indx1]]  ]})
+        avaliableMoves.update({2:[ list(regMoves.keys())[indx2], regMoves[list(regMoves.keys())[indx2]]  ]})
+        avaliableMoves.update({3:[ list(regMoves.keys())[indx3], regMoves[list(regMoves.keys())[indx3]]  ]})
+        avaliableMoves.update({4:[ list(outsMoves.keys())[indx4], outsMoves[list(outsMoves.keys())[indx4]]  ]})
     else:
         indx1, indx2 = random.sample(range(0,3),2)
         indx3, indx4 = random.sample(range(0,5),2)
-        avaliableMoves.update({1:regularMoves[indx1]})
-        avaliableMoves.update({2:regularMoves[indx2]})
-        avaliableMoves.update({3:legendaryMoves[indx3]})
-        avaliableMoves.update({4:legendaryMoves[indx4]})
+
+        avaliableMoves.update({1:[ list(outsMoves.keys())[indx1], outsMoves[list(outsMoves.keys())[indx1]]  ]})
+        avaliableMoves.update({2:[ list(outsMoves.keys())[indx2], outsMoves[list(outsMoves.keys())[indx2]]  ]})
+        avaliableMoves.update({3:[ list(legMoves.keys())[indx3], legMoves[list(legMoves.keys())[indx3]]  ]})
+        avaliableMoves.update({4:[ list(legMoves.keys())[indx4], legMoves[list(legMoves.keys())[indx4]]  ]})
 
     return avaliableMoves
 
