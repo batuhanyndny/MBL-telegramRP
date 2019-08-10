@@ -2,6 +2,7 @@ import os
 import time
 from chars import *
 from moves import *
+from logic import *
 
 def main():
     print('LOADING...')
