@@ -1,6 +1,7 @@
 import os
-from classes import *
 import time
+from chars import *
+from moves import *
 
 def main():
     print('LOADING...')
