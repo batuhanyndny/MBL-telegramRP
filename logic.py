@@ -1,33 +1,6 @@
 import random
 import time
 
-def currentCharList():
-    CharList = {
-        'buyukbabaMax' : ['BuyukbabaMAX', 14, 'BUYUKBABA MAX' ],
-        'emanetoglu' : ['EMANETOGLU', 12, "GIRESUNLU ASIRET VARISI"]
-    }
-
-    return CharList
-
-def currentMoveList():
-    MoveList = {
-        'regular' : {   'geciktirici':'USES GECIKTIRICI TO LAST LONGER. HITS TWICE', 
-                        'dickSlap':'SLAP THE ENEMYS ASS WITH YOUR DICK. HITS ONCE', 
-                        'spankDaddy':'SPANK THE ENEMY IN THE BUTT. HITS ONCE'},
-
-        'outstanding' : {'tencere':'WRAP TENCERE AROUND YO ASS. GAIN 20 ASSHOLE ARMOR', 
-                        'ancientStand':'PERFORM THE ANCIENT VIRGIN STAND. BLOCKS ENEMY ONCE', 
-                        'Linc':'GATHER A GROUP OF COMARS AND BULLY THE ENEMY. GAIN 25 ASSHOLE ARMOR AND DEAL 30 DAMAGE'},
-
-        'legendary' : {'amguard':'PUT AMGUARD TO YOUR ASS. GAIN 80 ASSHOLE ARMOR', 
-                        'quadroDick':'YOUR DICK IS 4X LONGER. HIT ENEMY HARD', 
-                        'kucultucu': 'MAKE YOUR ENEMYS DICK SIZE 2. BEHOLD MICROPENIS', 
-                        'assholeVacuum': 'WHAT A MAGIC WITH MOUTH. DEAL +48 DAMAGE', 
-                        'ReverseCard': 'PARKOURR'}
-
-    }
-    return MoveList
-
 def setAvaliableMoves(roundNumber, currentMoveList):
     avaliableMoves = {}
     regMoves = currentMoveList['regular']

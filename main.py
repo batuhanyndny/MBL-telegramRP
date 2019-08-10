@@ -12,7 +12,7 @@ def main():
     charNames = ['buyukbabaMax','emanetoglu']
 
     for charName in charNames:
-        currList = currentCharList()
+        currList = Char.currentCharList()
         details = currList[charName]
         charObj = Char(details[0],details[1], details[2])
         chars.update({charName:charObj})
@@ -65,7 +65,7 @@ def main():
         
         #list(dict(list(moves.values())[0]).keys())
 
-        movesDict = setAvaliableMoves(roundNumber, currentMoveList())
+        movesDict = setAvaliableMoves(roundNumber, Moves.currentMoveList())
 
         moveNames, moveValues = list(movesDict.values()) , list(movesDict.keys())
 

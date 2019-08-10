@@ -39,3 +39,11 @@ class Char:
             else:
                 print("Hit !! {0}'s health decrased by {1}".format(Char.title, damage))
                 Char.hp -= damage
+
+    def currentCharList():
+        CharList = {
+        'buyukbabaMax' : ['BuyukbabaMAX', 14, 'BUYUKBABA MAX' ],
+        'emanetoglu' : ['EMANETOGLU', 12, "GIRESUNLU ASIRET VARISI"]
+        }
+
+        return CharList
