@@ -80,6 +80,7 @@ class Moves:
             Moves.armorHpRegulizer(attacker,defencer.dickSize*4)
         elif move == 'kucultucu':
             Moves.kucultucu(defencer)
+            Moves.resetDS(attacker)
             print("REVERSE CARD!\nNIGGA {0} PUT THE KUCULTUCU TO {1}'s DICK".format(attacker.title, defencer.title))
         elif move == 'geciktirici':
             print("REVERSE CARD!\nNOPE {0} USED BETTER GECIKTIRICI".format(attacker.title))
