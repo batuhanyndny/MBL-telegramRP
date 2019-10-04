@@ -3,6 +3,7 @@ import time
 from chars import *
 from moves import *
 from logic import *
+print('burada bir hata var')
 
 def main():
     print('LOADING...')
